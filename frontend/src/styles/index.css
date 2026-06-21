@@ -3,26 +3,35 @@
 @tailwind utilities;
 
 :root {
-  --bg-color: #fafafa;
-  --grid-color: rgba(0, 0, 0, 0.07);
+  --bg-color: #000000;
+  --grid-color: rgba(0, 255, 65, 0.15); /* Matrix green grid */
 }
 
 .dark {
-  --bg-color: #121212; /* Deep architectural charcoal */
-  --grid-color: rgba(255, 255, 255, 0.07); /* Subtle white blueprint lines */
+  --bg-color: #000000;
+  --grid-color: rgba(0, 255, 65, 0.15);
 }
 @layer utilities {
   .animate-reveal {
-    animation: reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: reveal 0.5s steps(5, end) forwards;
   }
   .animate-breathe {
     animation: breathe 4s ease-in-out infinite alternate;
   }
+  .crt-overlay {
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 4px, 3px 100%;
+    z-index: 9999;
+    pointer-events: none;
+  }
+  .marquee-scroll {
+    animation: marquee 15s linear infinite;
+  }
 }
 
 @keyframes reveal {
-  0% { opacity: 0; transform: translateY(10px); filter: blur(5px); }
-  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes breathe {
@@ -36,4 +45,9 @@
     60% { transform: translateX(-40px); }
     90% { transform: translateX(0); }
     100% { transform: translateX(0); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
 }

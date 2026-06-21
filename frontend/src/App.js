@@ -41,30 +41,9 @@ function App() {
 
     // Theme Detection Logic
     useEffect(() => {
-        const checkTimeTheme = () => {
-            if (manualTheme !== null) {
-                const isDark = manualTheme === 'dark';
-                if (isDark) document.documentElement.classList.add('dark');
-                else document.documentElement.classList.remove('dark');
-                setIsDarkMode(isDark);
-                return;
-            }
-
-            const currentHour = new Date().getHours();
-            const isNight = currentHour < 6 || currentHour >= 18; // Before 6 AM or after 6 PM is dark mode
-            
-            if (isNight) {
-                document.documentElement.classList.add('dark');
-                setIsDarkMode(true);
-            } else {
-                document.documentElement.classList.remove('dark');
-                setIsDarkMode(false);
-            }
-        };
-
-        checkTimeTheme();
-        const interval = setInterval(checkTimeTheme, 60000); // Check every minute
-        return () => clearInterval(interval);
+        // Force dark mode for Cyber-Brutalism
+        document.documentElement.classList.add('dark');
+        setIsDarkMode(true);
     }, [manualTheme]);
 
 
@@ -131,29 +110,18 @@ function App() {
                 </div>
             </div>
 
-            {/* Vector Graphic (Animates Center -> Top Left) */}
-            <img 
-                src={`${process.env.PUBLIC_URL}/images/vector1.png`} 
-                alt="Decoration" 
-                className={`absolute z-50 object-contain pointer-events-none transition-all duration-[2000ms] ease-in-out ${
-                    startAnimation 
-                        ? 'top-8 left-12 w-12 opacity-90 translate-x-0 translate-y-0' 
-                        : 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 opacity-100'
-                }`}
-            />
+            {/* CRT Overlay */}
+            <div className="absolute inset-0 crt-overlay pointer-events-none"></div>
 
             {/* Main Application Content */}
             <div className={`absolute inset-0 transition-opacity duration-[1500ms] ${isAppReady ? 'opacity-100' : 'opacity-0'}`}>
 
-                {/* Background Watermark */}
+                {/* Brutalist Watermark */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden select-none px-12">
-                    <h1 className="w-full flex justify-between text-[16vw] font-geist font-black tracking-tighter leading-none text-[#121212] dark:text-white scale-y-125">
-                        {"HI, MAKERS".split('').map((char, i) => (
-                            <span 
-                                key={i} 
-                                className="opacity-[0.03] dark:opacity-[0.02]"
-                            >
-                                {char === ' ' ? '\u00A0\u00A0' : char}
+                    <h1 className="w-full flex justify-between text-[16vw] font-vt323 font-black leading-none text-[#121212] dark:text-[#0a0a0a] scale-y-125 opacity-40">
+                        {"ATTENDANCE_LOG".split('').map((char, i) => (
+                            <span key={i}>
+                                {char}
                             </span>
                         ))}
                     </h1>
@@ -161,11 +129,12 @@ function App() {
 
                 <PaginatedCardGrid data={data} isDarkMode={isDarkMode} setManualTheme={setManualTheme} />
                 
-                {/* Bottom Quote */}
-                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 pointer-events-none z-10 opacity-60">
-                    <p className="font-instrument text-[#0a192f] dark:text-white text-4xl italic tracking-wide transition-colors duration-500">
-                        "Community is my spinach"
-                    </p>
+                {/* Brutalist Marquee Banner */}
+                <div className="absolute bottom-6 left-0 w-full overflow-hidden border-t-4 border-b-4 border-neon-green bg-black py-2 z-50 pointer-events-none">
+                    <div className="flex whitespace-nowrap marquee-scroll font-vt323 text-3xl text-neon-green uppercase tracking-widest">
+                        <span className="mx-4">SYSTEM ONLINE</span> // <span className="mx-4">TINKERSPACE_DIGITAL</span> // <span className="mx-4">HACK THE PLANET</span> // <span className="mx-4">NO UNAUTHORIZED ACCESS</span> // <span className="mx-4">ATTENDANCE LOGGING ACTIVE</span> //
+                        <span className="mx-4">SYSTEM ONLINE</span> // <span className="mx-4">TINKERSPACE_DIGITAL</span> // <span className="mx-4">HACK THE PLANET</span> // <span className="mx-4">NO UNAUTHORIZED ACCESS</span> // <span className="mx-4">ATTENDANCE LOGGING ACTIVE</span> //
+                    </div>
                 </div>
 
                 {/* Bottom-Right Controls / Information */}
@@ -198,18 +167,7 @@ function App() {
                     </button>
                     */}
 
-                    {/* Bottom-Right Graphic */}
-                    <img 
-                        src={`${process.env.PUBLIC_URL}/images/dont-look.png`} 
-                        alt="Don't Look Decoration" 
-                        className="w-24 object-contain opacity-80"
-                    />
                 </div>
-
-                {/* Absolute Full-Width Bottom Marquee (Hidden for now) */}
-                {/* <div className="absolute bottom-0 left-0 w-full pointer-events-none z-50">
-                    <LedMarquee />
-                </div> */}
             </div>
         </div>
     );

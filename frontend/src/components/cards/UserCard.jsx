@@ -4,14 +4,14 @@ import UserImage from '../userdetails/UserImage';
 import UserBadges from '../userdetails/UserBadges';
 import UserInfo from '../userdetails/UserInfo';
 
-// Color mapping for different user purposes with soft pastel colors
+// Color mapping for different user purposes with neon colors
 const PURPOSE_COLORS = {
-  'Attending an event': '#FFD1D1', // Soft Red
-  'On duty': '#FFE5B4', // Soft Orange
-  'Visiting': '#D1FFD1', // Soft Green
-  'Working on a project': '#D1E8FF', // Soft Blue
-  'Self Learning': '#E8D1FF', // Soft Purple
-  'default': '#FFF3B0' // Soft Yellow
+  'Attending an event': '#FF00FF', // Hot Magenta
+  'On duty': '#00FFFF', // Electric Blue
+  'Visiting': '#00FF41', // Matrix Green
+  'Working on a project': '#FFFF00', // Cyber Yellow
+  'Self Learning': '#FF00FF', 
+  'default': '#00FF41' 
 };
 
 export default function UserCard({ card, CARD_HEIGHT }) {
@@ -24,6 +24,13 @@ export default function UserCard({ card, CARD_HEIGHT }) {
   const displayPurpose = hasSecurityBadge ? 'On duty' : card.purpose;
   const purposeColor = PURPOSE_COLORS[displayPurpose] || PURPOSE_COLORS['default'];
 
+  // Determine brutal shadow based on purpose color
+  let shadowClass = 'shadow-brutal-green';
+  let borderClass = 'border-neon-green';
+  if (purposeColor === '#FF00FF') { shadowClass = 'shadow-brutal-magenta'; borderClass = 'border-neon-magenta'; }
+  else if (purposeColor === '#FFFF00') { shadowClass = 'shadow-brutal-yellow'; borderClass = 'border-neon-yellow'; }
+  else if (purposeColor === '#00FFFF') { shadowClass = 'shadow-brutal'; borderClass = 'border-neon-blue'; } // using default white brutal shadow for blue or we can just leave it
+
   useEffect(() => {
     if (textRef.current && containerRef.current) {
       const textWidth = textRef.current.scrollWidth;
@@ -34,7 +41,7 @@ export default function UserCard({ card, CARD_HEIGHT }) {
 
   return (
     <div 
-      className="bg-white/40 dark:bg-white/5 backdrop-blur-2xl rounded-3xl border border-white/60 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] overflow-hidden flex flex-col items-center transition-all duration-300"
+      className={`bg-black border-4 ${borderClass} ${shadowClass} flex flex-col items-center transition-all duration-300 relative`}
       style={{
         width: '100%',
         height: `${CARD_HEIGHT}px`

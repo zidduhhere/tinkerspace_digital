@@ -2,9 +2,9 @@ import React from 'react';
 
 export default function CardContent({ card, textRef, containerRef, isOverflowing, purpose, purposeColor }) {
   return (
-    <div className="px-4 py-3 flex flex-col gap-1 w-full flex-1 bg-transparent">
-      <div className="text-[1.15rem] leading-tight font-semibold text-gray-800 dark:text-gray-100 tracking-tight whitespace-nowrap transition-colors duration-500">
-        <div ref={containerRef} className="overflow-hidden relative pb-1">
+    <div className="px-4 py-3 flex flex-col justify-center gap-1 w-full flex-1 bg-black font-mono border-t-4 border-inherit">
+      <div className="text-xl leading-tight font-black text-white tracking-widest uppercase whitespace-nowrap">
+        <div ref={containerRef} className="overflow-hidden relative">
           <div
             ref={textRef}
             className="whitespace-nowrap inline-block"
@@ -17,8 +17,8 @@ export default function CardContent({ card, textRef, containerRef, isOverflowing
           </div>
         </div>
       </div>
-      <div className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide whitespace-nowrap overflow-hidden text-ellipsis leading-none mt-1 transition-colors duration-500">
-        {card.workingOn || card.projectName || '\u00A0'}
+      <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest whitespace-nowrap overflow-hidden text-ellipsis leading-none mt-1">
+        {card.workingOn || card.projectName || 'NO_DATA'}
       </div>
     </div>
   );

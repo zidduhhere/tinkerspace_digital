@@ -20,7 +20,7 @@ export default function UserBadges({ name }) {
   return (
     <div style={{
       position: 'absolute',
-      top: '170px',
+      top: '180px',
       right: '4px',
       width: '56px',
       height: '56px',

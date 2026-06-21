@@ -110,14 +110,14 @@ export default function PaginatedCardGrid({ data, isDarkMode, setManualTheme }) 
 
       {/* Page Number Indicator */}
       {totalPages > 1 && (
-        <div className="absolute bottom-8 left-12 flex items-center gap-3 z-50 pointer-events-none drop-shadow-sm transition-colors duration-500">
+        <div className="absolute bottom-8 left-12 flex items-center gap-4 z-50 pointer-events-none transition-colors duration-500">
           {Array.from({ length: totalPages }).map((_, i) => (
             <div
               key={i}
-              className={`w-3 h-3 rounded-full transition-all duration-500 ${
+              className={`w-6 h-6 border-2 transition-all duration-300 ${
                 i === page
-                  ? 'bg-gray-800 dark:bg-white scale-125 shadow-md'
-                  : 'bg-gray-400/50 dark:bg-white/20 hover:bg-gray-500/50'
+                  ? 'bg-neon-yellow border-neon-yellow shadow-brutal-yellow translate-x-[-2px] translate-y-[-2px]'
+                  : 'bg-black border-neon-yellow opacity-50'
               }`}
             />
           ))}
