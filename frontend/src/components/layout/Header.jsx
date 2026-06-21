@@ -47,7 +47,7 @@ export default function Header({ content, isDarkMode, setManualTheme }) {
       <div className="flex items-center gap-8 bg-white/40 dark:bg-black/40 backdrop-blur-2xl border border-white/60 dark:border-white/10 shadow-xl shadow-black/5 dark:shadow-black/20 px-8 py-4 rounded-full pointer-events-auto transition-colors duration-500">
         
         <div className="flex items-center gap-4">
-          <div className="w-4 h-4 rounded-full bg-green-500 animate-pulse" />
+          <img src={`${process.env.PUBLIC_URL}/images/vector1.png`} alt="Live" className="w-6 h-6 animate-pulse drop-shadow-md" />
           <span className="font-bold tracking-widest text-gray-800 dark:text-gray-200 text-lg uppercase transition-colors duration-500">
             LiveFeed
           </span>
