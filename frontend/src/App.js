@@ -131,16 +131,18 @@ function App() {
                 </div>
             </div>
 
-            {/* Vector Graphic (Animates Center -> Top Left) */}
-            <img 
-                src={`${process.env.PUBLIC_URL}/images/vector1.png`} 
-                alt="Decoration" 
-                className={`absolute z-50 object-contain pointer-events-none transition-all duration-[2000ms] ease-in-out ${
+            {/* Top Left Logo (Animates Center -> Top Left) */}
+            <div className={`absolute z-50 flex items-center justify-center transition-all duration-[2000ms] ease-in-out pointer-events-none ${
                     startAnimation 
-                        ? 'top-8 left-12 w-12 opacity-90 translate-x-0 translate-y-0' 
-                        : 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 opacity-100'
-                }`}
-            />
+                        ? 'top-8 left-12 opacity-90 translate-x-0 translate-y-0 bg-white/40 dark:bg-black/40 backdrop-blur-2xl border border-white/60 dark:border-white/10 shadow-xl px-6 py-3 rounded-full' 
+                        : 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-100 bg-transparent border-transparent'
+                }`}>
+                <img 
+                    src={`${process.env.PUBLIC_URL}/images/SpaceLogo.png`} 
+                    alt="Tinkerspace Logo" 
+                    className={`object-contain transition-all duration-[2000ms] ${startAnimation ? 'h-8 w-auto' : 'h-32 w-auto'}`}
+                />
+            </div>
 
             {/* Main Application Content */}
             <div className={`absolute inset-0 transition-opacity duration-[1500ms] ${isAppReady ? 'opacity-100' : 'opacity-0'}`}>

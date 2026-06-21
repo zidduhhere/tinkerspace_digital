@@ -34,7 +34,7 @@ export default function UserCard({ card, CARD_HEIGHT }) {
 
   return (
     <div 
-      className="bg-white/40 dark:bg-white/5 backdrop-blur-2xl rounded-3xl border border-white/60 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] overflow-hidden flex flex-col items-center transition-all duration-300"
+      className="bg-white/40 dark:bg-white/5 backdrop-blur-2xl rounded-3xl border border-[#121212]/15 dark:border-[#121212]/40 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] overflow-hidden flex flex-col items-center transition-all duration-300"
       style={{
         width: '100%',
         height: `${CARD_HEIGHT}px`
